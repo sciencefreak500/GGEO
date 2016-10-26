@@ -1,0 +1,313 @@
+$stable: #000000;
+$light: #F8F8F8;
+$link-color: $stable;
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss/ionic.scss";
+.entryField {
+	background-color: rgba(255, 255, 255, 0);
+	color: white;
+	border: none;
+	border-bottom: 1px solid #7e7d7c;
+}
+
+.fieldIcon {
+	color: #a3a2a2;
+	width: 32px;
+	font-size: 24px;
+}
+
+.avatarImage {
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 100%;
+	width: 50%;
+}
+
+.checkboxItem {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.family-icon-scroller {
+	-webkit-overflow-scrolling: touch;
+	padding: 5px 15px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+	list-style: none;
+	margin-top: -80px;
+	position: relative;
+}
+
+.family-icon {
+	max-width: 64px;
+	max-height: 64px;
+	display: inline-block;
+	vertical-align: top;
+	white-space: normal;
+	margin: 0 10px;
+}
+
+.systemText {
+	border: 1px solid rgba(0,0,0,0.4);
+	padding: 4px;
+	border-radius: 7px;
+	color: white;
+}
+
+.systemContainer {
+	display: inline-block;
+	vertical-align: top;
+	white-space: normal;
+	margin: 0 2px;
+}
+
+.chatBar {
+	background-color: rgba(43,40,40,0.20);
+	border-top: 1px solid #656565;
+}
+
+.chatSend {
+	height: 50px;
+	border-radius: 0px;
+	border-left: 1px solid;
+}
+
+.messages.other {
+	position: relative;
+	text-align: right;
+}
+
+.messages span {
+	background-color: #8BC34A;
+	display: inline-block;
+	padding: 5px 15px;
+	border-radius: 12px;
+	margin: 10px;
+	max-width: 93%;
+}
+
+.messages.other span {
+	background-color: #9E9E9E;
+}
+
+.button.button-positive.button-clear.tabButtons {
+	color: #a9a9a9;
+}
+
+
+.button.button-positive.button-clear.tabButtons:active {
+	color: white;
+	border-bottom: 1px solid white;
+}
+
+.navTabs {
+	color: white;
+}
+
+a {
+	text-decoration: none;
+}
+
+.plusSymbol {
+	height: 30px;
+	position: relative;
+	bottom: 160px;
+	left: 200px;
+}
+
+.errorMessage {
+	border: 1px solid #2196F3;
+	background-color: #11c1f3;
+	border-radius: 8px;
+	padding: 5px 10px;
+}
+
+.searchPart {
+	display: inline-block;
+	width: 70%;
+}
+
+.noIconText {
+	width: 64px;
+	max-height: 64px;
+	height: 64px;
+	overflow: scroll;
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+	position: relative;
+	bottom: 70px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.divScroller {
+	position: absolute;
+	margin-top: 65px;
+}
+
+.notQuiteBottom {
+	height: calc(100% - 13em);
+}
+
+.platform-ios .popover-arrow {
+	display: none;
+}
+
+.platform-android .popover .item {
+	border-color: rgba(250, 250, 250, 0);
+	background-color: rgba(250, 250, 250, 0);
+}
+
+.notificationNumber {
+    border-radius: 50px;
+    background-color: red;
+    font-size: 12px;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    position: relative;
+    bottom: 16px;
+    left: 14px;
+}
+
+.friendRequestButton {
+	float: right;
+	line-height: 1px;
+	min-height: 1px;
+	font-size: 10px;
+	bottom: 10px;
+	height: 10px;
+}
+
+//overwrite ionic themes
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+	color: white;
+}
+
+.bar.bar-stable .title {
+	color: #fff;
+}
+
+.bar.bar-stable {
+	border-style: none;
+}
+
+.bar-stable .button.button-clear{
+	color: #fff;
+}
+
+/*.bar .buttons span {
+	display: none;
+}*/
+
+.button.button-positive.button-clear {
+	color: white;
+}
+
+.item-radio input:checked + .radio-content .item-content {
+	background: rgba(247, 247, 247, 0);
+}
+
+.item-complex .item-content, .item-radio .item-content {
+	background-color: rgba(248, 248, 248, 0);
+}
+
+.checkbox input:before, .checkbox-icon:before {
+	background: rgba(255, 255, 255, 0);
+}
+
+.item-thumbnail-left > img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left .item-content > img:first-child, .item-thumbnail-left .item-content .item-image {
+	max-width: 64px;
+	max-height: 64px;
+}
+
+.item-thumbnail-left, .item-thumbnail-left .item-content {
+	padding-top: 30px;
+}
+
+.item, .item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p, .item-content, .item-content h1, .item-content h2, .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
+	white-space: inherit;
+	color: #e0dddd;
+}
+
+.item {
+	border-color: rgba(221, 221, 221, 0);
+	background-color: rgba(248, 248, 248, 0);
+	border-bottom: 1px solid #909090;
+}
+
+.tabs-striped.tabs-stable .tab-item.tab-item-active, .tabs-striped.tabs-stable .tab-item.active, .tabs-striped.tabs-stable .tab-item.activated {
+	color: white;
+}
+
+.tabs-striped .tabs {
+	border-bottom: 1px solid #151414;
+}
+
+.tabs-striped.tabs-stable .tab-item {
+	color: rgba(255,255,255,0.40);
+	opacity: 1;
+}
+
+.invalid {
+	outline-color: red;
+	/* also need animation and -moz-animation */
+	    animation: shake .5s linear;
+	-webkit-animation: shake .5s linear;
+}
+
+/* also need keyframes and -moz-keyframes */
+ @-webkit-keyframes shake {
+	25% {
+		-webkit-transform: translateY(10px);
+	}
+	
+	50% {
+		-webkit-transform: translateY(0);
+	}
+	
+	75% {
+		-webkit-transform: translateY(5px);
+	}
+	
+	100% {
+		-webkit-transform: translateY(0);
+	}
+	
+}
+ion-view,.pane,.view {
+	background-color: #4C3F3F;
+}
+
+body {
+	color: #FFFFFF;
+}
+
+[nav-bar-transition="ios"] [nav-bar="active"] .bar, [nav-bar-transition="ios"] [nav-bar="entering"] .bar {
+    background: black;
+}
+
+.tabs-stable > .tabs, .tabs.tabs-stable {
+background-image: linear-gradient(0deg, black, black 50%, transparent 50%);
+}
+
+.button.button-light {
+    color: #d6cbcb;
+
+}
+
+.button.button-light:hover {
+    color: #d6cbcb;
+}
+
+
+
+.modal.modal {
+	bottom: 0;  
+  min-height: initial;
+  top: initial;
+  height: 50%;
+  border-width: 1px;
+  border-style: solid;
+}

@@ -1,0 +1,30 @@
+<ion-view title="Sign Up" id="page10">
+    <ion-content padding="true" style="background: url(img/qFiO1Og6SUCIornnH2mc_background.png) no-repeat center;background-size:cover;" class="has-header">
+        <div>
+            <img class="avatarImage" src="img/z4usP9suRKq55TpP0keF_profile-icon.png" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <form id="eventSignUp-form4" class="list" name="signupForm">
+            <div class="spacer" style="width: 300px; height: 19px;"></div>
+            <ion-list id="eventSignUp-list10">
+                <label class="item item-input entryField" name="name">
+                    <span class="fieldIcon icon ion-android-person"></span>
+                    <input type="text" placeholder="Event Name" ng-model="user.eventName" required="">
+                </label>
+                <label class="item item-input entryField" name="name">
+                    <span class="fieldIcon icon ion-ios-box"></span>
+                    <input type="text" placeholder="Company Name" ng-model="user.companyName" required="">
+                </label>
+                <label class="item item-input entryField" name="email">
+                    <span class="fieldIcon icon ion-ios-email-outline"></span>
+                    <input type="email" placeholder="Email" ng-model="user.email" required="">
+                </label>
+                <label class="item item-input entryField" name="password">
+                    <span class="fieldIcon icon ion-ios-locked-outline"></span>
+                    <input type="password" placeholder="Password" ng-model="user.password" required="">
+                </label>
+            </ion-list>
+            <div class="spacer" style="width: 300px; height: 31px;"></div>
+            <a ui-sref="signUpGames" type="submit" ng-disabled="signupForm.$invalid" ng-click="createUser(signupForm)" style="border-radius:50px 50px 50px 50px;" class="button button-calm  button-block">Next</a>
+        </form>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,39 @@
+<ion-view title="Friends" hide-back-button="true" id="page4" >
+    
+	<ion-nav-buttons side="left" scroll="false" class="has-header">
+        <a ui-sref="tabsController.profile" class="button button-icon button-light icon ion-android-person"></a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right" scroll="false" class="has-header">
+        <a ui-sref="tabsController.settings" class="button button-icon button-light icon ion-gear-a"></a>
+    </ion-nav-buttons>
+	
+	<ion-content padding="true" style="background: url(img/RQ5cTku4SAKZ0BcijJf7_background.png) no-repeat center;background-size:cover;" scroll="false" class="has-header">
+        <form class="list">
+            <div>
+                <label class="item item-input" style="border: 1px solid white; border-radius: 20px;    padding: 1px 15px;">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="search" placeholder="Search by name" ng-model="search.text" ng-model-options="{ debounce: 0618 }" ng-change="searchName()">
+                </label>
+            </div>
+        </form>
+        <ion-content class="divScroller">
+
+
+            <ion-item class="item-avatar item-icon-right  entryField" ng-model="chatList" collection-repeat="chatter in chatList | filterList:nsearch">
+                <img src="{{chatter.avatar}}">
+                <h2>{{chatter.name}}</h2>
+
+                <div ng-if="chatter.online == true">
+                    <a ui-sref="chatPage({gamer: chatter.name})" class="icon ion-ios-chatbubble" style="color: #00ff00;"></a>
+                </div>
+
+                <div ng-if="chatter.online == false">
+                    <a ui-sref="chatPage({gamer: chatter.name})" class="icon ion-ios-chatbubble" style="color: #dcdcdc;"></a>
+                </div>
+
+            </ion-item>
+
+
+        </ion-content>
+    </ion-content>
+</ion-view>

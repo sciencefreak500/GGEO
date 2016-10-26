@@ -1,0 +1,27 @@
+<ion-view title="Page" id="page15">
+    <ion-content padding="true" class="has-header">
+        <div>
+            <label class="item item-input" name="gamePlaying">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="What game are you playing?" ng-model="g.search" ng-model-options="{ debounce: 1618 }" ng-change="searchGames()" ng-click="openPopover($event)">
+            </label>
+
+
+
+
+
+            <script id="my-popover.html" type="text/ng-template">
+                <ion-popover-view style="left: 0px; width: 96%;background-color: #756969;margin-top:12px;">
+                    
+                    <ion-content style="padding: 5px;">
+                    <ion-list ng-repeat="gname in gameList">
+                      <ion-checkbox style="border-bottom: 1px solid #9a9191" ng-model="checked" ng-change="setPlaying(checked,gname)">
+                      {{gname}}
+                      </ion-checkbox>
+                      </ion-list>
+                    </ion-content>
+                  </ion-popover-view>
+            </script>
+        </div>
+    </ion-content>
+</ion-view>

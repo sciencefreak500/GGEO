@@ -1,0 +1,137 @@
+<ion-view title="Find Gamers" hide-back-button="true" id="page2" >
+
+	<ion-nav-buttons side="left" scroll="false" class="has-header">
+        <a ui-sref="tabsController.profile" class="button button-icon button-light icon ion-android-person" >
+            <div ng-if="friendR > 0" class="notificationNumber" ng-model="friendR">
+        {{friendR}}
+            </div>
+        </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right" scroll="false" class="has-header">
+        <a ui-sref="tabsController.settings" class="button button-icon button-light icon ion-gear-a"></a>
+    </ion-nav-buttons>
+
+    <ion-content padding="true" style="background: url(img/zIgXSQpSpaGKIjbsuOF8_background.png) no-repeat center;background-size:cover;" scroll="false" class="has-header">
+        <form class="list">
+            <div>
+                <label class="item item-input" style="border: 1px solid white; border-radius: 20px;    padding: 1px 15px;">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="search" placeholder="Search by game" ng-model="search.text" ng-model-options="{ debounce: 0618 }" ng-change="searchGame()" ng-click="openPopover($event)">
+                </label>
+            </div>
+        </form>
+        <ul class="family-icon-scroller" style="margin-top: 0px">
+            <li class="systemContainer" ng-model="consoleList" ng-repeat="console in consoleList">
+                <button ng-click="console.click=!console.click" class="systemText" style="background-color: {{console.colorToggle()}};">{{console.name}}</button>
+            </li>
+        </ul>
+        <div class="button-bar">
+            <button ng-click="activateTab('gamers')" ng-model="tabcolor_gamers" class="button  button-block button-clear tabButtons" style="{{tabcolor_gamers}}">Gamers</button>
+            <button ng-click="activateTab('events')" ng-model="tabcolor_events" class="button  button-block button-clear tabButtons" style="{{tabcolor_events}}">Events</button>
+        </div>
+        <div>
+
+            <ion-content direction="y" has-bouncing="true" style="    margin-top: 173px;" scrollbar-y="true">
+                <div ng-model="gamerTabSelected" ng-if="gamerTabSelected == true">
+                    <ion-item class="item-avatar item-icon-right  entryField" ng-model="gamerList" ng-repeat="glist in gamerList">
+                        <img src="{{glist.info.avatar}}" height="40px" width="40px">
+                        <h2>{{glist.info.name}}</h2>
+
+                        <div ng-if="glist.friend == true">
+                            <div ng-if="glist.info.online == true">
+                                <p style="font-size: 12px;">Playing
+                                    <span style="color: #5bd7ff;margin-right: 3px;">{{glist.info.playing}}</span>on
+                                    <span ng-model="getConsoleColor" style="color: {{getConsoleColor(glist.info.system)}}">{{glist.info.system}}
+                                    </span>
+                                </p>
+                                <a ui-sref="chatPage({gamer: glist.info.name})" class="icon ion-ios-chatbubble" style="color: #00ff00;" ></a>
+                                <span style="font-size: 10px;">{{distFromPlayer(glist.info.longitude, glist.info.latitude)}}</span>
+                            </div>
+                            
+                           
+
+                            <div ng-if="glist.info.online == false">
+                                <p style="font-size: 12px;">Played
+                                    <span style="color: #5bd7ff;margin-right: 3px;">{{glist.info.playing}}</span>on
+                                    <span ng-model="getConsoleColor" style="color: {{getConsoleColor(glist.info.system)}}">{{glist.info.system}}
+                                    </span>
+                                </p>
+                                <a ui-sref="chatPage({gamer: glist.info.name})" class="icon ion-ios-chatbubble" style="color: #dcdcdc;" ></a>
+                                <span style="font-size: 10px;">{{distFromPlayer(glist.info.longitude, glist.info.latitude)}}</span>
+                            </div>
+                          
+                        </div>
+
+                        <div ng-if="glist.friend == false">
+                            <div ng-if="glist.info.online == true">
+                                <p style="font-size: 12px;">Playing
+                                    <span style="color: #5bd7ff;margin-right: 3px;">{{glist.info.playing}}</span>on
+                                    <span ng-model="getConsoleColor" style="color: {{getConsoleColor(glist.info.system)}}">{{glist.info.system}}
+                                    </span>
+                                </p>
+                                <a ng-click="addFriend(glist.info)" class="icon ion-android-person-add" style="color: #00ff00;" ></a>
+                                <span style="font-size: 10px;">{{distFromPlayer(glist.info.longitude, glist.info.latitude)}}</span>
+                            </div>
+                           
+
+                            <div ng-if="glist.info.online == false">
+                                <p style="font-size: 12px;">Played
+                                    <span style="color: #5bd7ff;margin-right: 3px;">{{glist.info.playing}}</span>on
+                                    <span ng-model="getConsoleColor" style="color: {{getConsoleColor(glist.info.system)}}">{{glist.info.system}}
+                                    </span>
+                                </p>
+                                <a ng-click="addFriend(glist.info)" class="icon ion-android-person-add" style="color: #dcdcdc;" ></a>
+                                <span style="font-size: 10px;">{{distFromPlayer(glist.info.longitude, glist.info.latitude)}}</span>
+                            </div>
+                           
+                        </div>
+
+                    </ion-item>
+                </div>
+
+
+                <div ng-model="gamerTabSelected" ng-if="gamerTabSelected == false">
+                    <p>Feature coming soon!</p>
+
+
+
+
+                    <!--<ion-item class="item-avatar item-icon-right  entryField" ng-model="eventList" ng-repeat="elist in eventList">
+            <img src="{{glist.info.avatar}}" height="40px" width="40px">
+            <h2>{{elist.name}}</h2>
+			
+			<div ng-if="elist.online == true">
+				<p style="font-size: 12px;">Playing <span style="color: #5bd7ff;margin-right: 3px;">{{elist.game}}</span> on
+					<span ng-model="getConsoleColor" style="color: {{getConsoleColor(elist.system)}}">{{elist.system}}
+					</span>
+				</p>
+				<i class="icon ion-ios-chatbubble" style="color: #00ff00;"></i>
+			</div>
+			
+			<div ng-if="elist.online == false">
+            <p style="font-size: 12px;">Played <span style="color: #5bd7ff;margin-right: 3px;">{{elist.game}}</span> on
+                <span ng-model="getConsoleColor" style="color: {{getConsoleColor(elist.system)}}">{{elist.system}}
+                </span>
+            </p>
+			<i class="icon ion-ios-chatbubble" style="color: #dcdcdc;"></i>
+			</div>
+        </ion-item>-->
+                </div>
+            </ion-content>
+
+
+            <script id="my-popover.html" type="text/ng-template">
+                <ion-popover-view style="left: 0px; width: 96%;background-color: #756969;margin-top:12px;height: 160px">
+                    
+                    <ion-content style="padding: 5px;">
+                    <ion-list ng-repeat="gname in gameList track by $index">
+                      <ion-checkbox style="border-bottom: 1px solid #9a9191" ng-model="checked" ng-change="searchResult(checked,gname)">
+                      {{gname}}
+                      </ion-checkbox>
+                      </ion-list>
+                    </ion-content>
+                  </ion-popover-view>
+            </script>
+        </div>
+    </ion-content>
+</ion-view>

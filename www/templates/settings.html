@@ -1,0 +1,53 @@
+<ion-view title="Settings" hide-back-button="true" cache-view="false" id="page13">
+    
+	<ion-nav-buttons side="left" scroll="false" class="has-header">
+        <a ui-sref="tabsController.findGamersTab" class="button button-icon button-light icon ion-ios-arrow-back"></a>
+    </ion-nav-buttons>
+	
+	<ion-nav-buttons side="right" scroll="false" class="has-header">
+        <button ng-click="logout()" ng-model="logout" class="button button-icon button-light icon ion-log-out" style="font-size: 14px">Logout</button>
+    </ion-nav-buttons>
+	
+	
+	<ion-content padding="true" style="background: url(img/YKi0VfbNTKCxIMRUK2jt_background.png) no-repeat center;background-size:cover;" scroll="false" class="has-header">
+        <form id="settings-form7" class="list">
+            <ion-toggle toggle-class="toggle-positive" style="margin-top: 2em;" id="settings-toggle3" name="online" ng-change="isOnline()" ng-model="player.online">Online</ion-toggle>
+    
+			<hr style="margin: 3em 0;"/>
+            <div>
+                <p style="text-align: left;">What game are you playing?</p>
+                <label class="item item-input" name="gamePlaying">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="search" placeholder="{{player.isPlaying}}" ng-model="g.search" ng-model-options="{ debounce: 1618 }" ng-change="searchGames()" ng-click="openPopover($event)">
+                </label>
+
+                <div style="margin-top: 15%;margin-bottom: 12%;">
+                    <ul style="margin-top: 0px;text-align: center;">
+                        <p style="text-align: left;">What console are you using?</p>
+                        <li class="systemContainer" ng-model="consoleList" ng-repeat="console in consoleList track by $index">
+                            <button ng-click="deselectOther(console.name); console.click=!console.click; setSystem(console.name)" class="systemText" style="background-color: {{console.colorToggle()}};">{{console.name}}</button>
+                        </li>
+                    </ul>
+                  
+                </div>
+
+
+
+                <script id="my-popover.html" type="text/ng-template">
+                    <ion-popover-view style="left: 0px; width: 96%;background-color: #756969;margin-top:12px;height: 160px">
+                        
+                        <ion-content style="padding: 5px;">
+                        <ion-list ng-repeat="gname in gameList track by $index">
+                          <ion-checkbox style="border-bottom: 1px solid #9a9191" ng-model="checked" ng-change="setPlaying(checked,gname)">
+                          {{gname}}
+                          </ion-checkbox>
+                          </ion-list>
+                        </ion-content>
+                      </ion-popover-view>
+                </script>
+
+
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

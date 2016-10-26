@@ -1,0 +1,39 @@
+<ion-view title="Sign Up" id="page11">
+    <ion-content padding="true" style="background: url(img/qFiO1Og6SUCIornnH2mc_background.png) no-repeat center;background-size:cover;" class="has-header">
+        <div style="height: 155px;" ng-model="user.image">
+            <div ng-if="user.image == 'https://firebasestorage.googleapis.com/v0/b/ggeo-80068.appspot.com/o/ggeologo.png?alt=media&amp;token=c5b63795-c813-4594-b897-e96f3d7993f5'">
+                <img ng-click="uploadPic()" ng-model="user.image" class="avatarImage" src="https://firebasestorage.googleapis.com/v0/b/ggeo-80068.appspot.com/o/profile-icon.png?alt=media&amp;token=93af029e-795b-49ba-ba55-05f765577db0" width="148px" height="148px" style="display: block; margin-left: auto; margin-right: auto;">
+            </div>
+            <div ng-if="user.image != 'https://firebasestorage.googleapis.com/v0/b/ggeo-80068.appspot.com/o/ggeologo.png?alt=media&amp;token=c5b63795-c813-4594-b897-e96f3d7993f5'">
+                <img ng-click="uploadPic()" ng-model="user.image" class="avatarImage" src="{{user.image}}" width="148px" height="148px" style="display: block; margin-left: auto; margin-right: auto;">
+            </div>
+
+            <img ng-click="uploadPic()" class="plusSymbol" src="https://firebasestorage.googleapis.com/v0/b/ggeo-80068.appspot.com/o/Profile-button.png?alt=media&amp;token=db2da14c-1826-4071-ac31-d98bd0b20783">
+        </div>
+		
+        <form id="gamerSignUp-form5" class="list" name="signupForm">
+            <div id="gamerSignUp-markdown9" ng-if="error" style="color:#FFFFFF;text-align:center;" class="errorMessage {{invalid}}">
+                <p>{{error}}</p>
+            </div>
+            <ion-list id="gamerSignUp-list11">
+                <label class="item item-input entryField" name="name">
+                    <span class="fieldIcon icon ion-android-person"></span>
+                    <input type="text" placeholder="Name" ng-model="user.name" required="">
+                </label>
+                <label class="item item-input entryField" name="email">
+                    <span class="fieldIcon icon ion-ios-email-outline"></span>
+                    <input type="email" placeholder="Email" ng-model="user.email" required="">
+                </label>
+                <label class="item item-input entryField" name="password">
+                    <span class="fieldIcon icon ion-ios-locked-outline"></span>
+                    <input type="password" placeholder="Password" ng-model="user.password" required="">
+                </label>
+                <label class="item item-input entryField" name="birthday">
+                    <span class="fieldIcon icon ion-ios-calendar-outline"></span>
+                    <input type="date" placeholder="Birthday" ng-model="user.birthday" required="">
+                </label>
+            </ion-list>
+            <button id="gamerSignUp-button11" type="submit" ng-disabled="signupForm.$invalid" ng-click="createUser(signupForm)" style="border-radius:50px 50px 50px 50px;" class="button button-calm  button-block">Next</button>
+        </form>
+    </ion-content>
+</ion-view>

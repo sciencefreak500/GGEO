@@ -1,0 +1,89 @@
+<ion-view title="Profile" hide-back-button="true" cache-view="false" id="page12">
+    
+	<ion-nav-buttons side="left" scroll="false" class="has-header">
+        <a ui-sref="tabsController.findGamersTab" class="button button-icon button-light icon ion-ios-arrow-back"></a>
+    </ion-nav-buttons>
+	
+    <ion-nav-buttons side="right" scroll="false" class="has-header">
+        <button class="button button-icon button-light icon ion-android-people" ng-click="openPopover($event); addFriendClick()">
+			<div ng-if="friendR > 0" class="notificationNumber" ng-model="friendR">
+        {{friendR}}
+			</div>
+		</button>
+</ion-nav-buttons>
+	
+	
+	<ion-content padding="true" style="background: url(img/Qk1umA3RgSXjJBazdlPu_background.png) no-repeat center;background-size:cover;" scroll="false" class="has-header">
+        
+        <div>
+            <img class="avatarImage" ng-model="userData" src="{{userData.image}}" width="148px" height="148px" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <div class="spacer" style="width: 300px; height: 14px;"></div>
+        <div id="profile-markdown4" style="color:#DDDDDD;font-size:16px;text-align:center;">
+            <p>{{userData.name}}</p>
+        </div>
+        <div id="profile-markdown6" style="color:#DDDDDD;font-size:12px;text-align:center;">
+            <p>Philadelphia, PA, Drexel</p>
+        </div>
+        <label class="item item-input">
+            <textarea class="entryField" placeholder="Tell us something about yourself, edit it anytime!" style="border-top:1px solid #7e7d7c;padding: 10px 0;height: 9em" ng-model="bio.text" ng-model-options="{ debounce: 1000 }" ng-change="updateBio()"></textarea>
+        </label>
+        <a ui-sref="tabsController.addGames({toProfile:true})" id="profile-button10" style="border-radius:50px 50px 50px 50px;" class="button button-light  button-block button-outline">Add Games</a>
+        <div>
+            <div id="profile-markdown10" style="color:#F1F1F1;font-size:14px;text-align:right;">
+                <p>Touch to see Stats</p>
+            </div>
+
+            <ion-footer-bar class="item-input-inset chatBar" style="height:68px;">
+                <div class="family-icon-scroller" style="margin-top:0px">
+                    <a ng-click="modal.show(); holdings(icons)" ng-model="IconList" ng-repeat="icons in IconList track by $index" class="family-icon">
+                        <img src="{{icons.thumbnail}}" height="64px" width="64px">
+                        <div class="noIconText" ng-if="icons.thumbnail == defaultImage">
+                            {{icons.name}}
+                        </div>
+                    </a>
+                </div>
+            </ion-footer-bar>
+
+
+
+            <script id="my-popover.html" type="text/ng-template">
+                <ion-popover-view style="left: 0px; width: 96%;background-color: #756969;margin-top:12px;height: 160px">
+                    
+                    <ion-content style="padding: 5px;">
+                    <ion-list ng-repeat="conf in confirmList track by $index">
+                      <ion-item style="border-bottom: 1px solid #9a9191">
+                      {{conf.name}}
+                <button class="friendRequestButton button button-positive  button-icon icon ion-checkmark" ng-click="confirmFriend(conf.id)"></button>
+                <button class="friendRequestButton button button-positive  button-icon icon ion-android-close" ng-click="denyFriend(conf.id)"></button>      
+                    
+                      
+                      </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ion-popover-view>
+            </script>
+
+
+            <script id="templates/modal.html" type="text/ng-template">
+                <ion-modal-view>
+                    <ion-header-bar class="bar bar-header bar-dark" style="background-color: black;">
+                      <h1 class="title">{{statName}} Stats</h1>
+                      
+                    </ion-header-bar>
+                    <ion-content class="padding" style="background: url(https://s3.amazonaws.com/ionic-io-static/zIgXSQpSpaGKIjbsuOF8_background.png) no-repeat center;background-size: cover;">
+                      <label class="item item-input">
+            <textarea class="entryField" placeholder="No stats entered yet, list 'em out!" style="border-top:1px solid #7e7d7c;padding: 10px 0;height: 150px" ng-model="stat.text" >{{stat.text}}</textarea>
+            </label>
+            <button ng-click="submitStats()" style="border-radius:50px 50px 50px 50px; width: 49%;" class="button button-light  button button-outline">Add Stats</button>
+            
+            <button ng-click="cancelStats()" style="border-radius:50px 50px 50px 50px; width: 49%;" class="button button-light  button button-outline">Cancel</button>
+            
+            
+                    </ion-content>
+                  </ion-modal-view>
+            </script>
+
+        </div>
+    </ion-content>
+</ion-view>

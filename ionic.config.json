@@ -1,0 +1,13 @@
+{
+  "name": "GGEO",
+  "app_id": "1dbb4052",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
+}

@@ -1,0 +1,26 @@
+<ion-view title="Login" id="page6">
+    <ion-content padding="true" style="background: url(img/hiJyLO2bSr67ePJSGKIi_background.png) no-repeat center;background-size:cover;" class="has-header">
+        <div class="spacer" style="width: 300px; height: 42px;"></div>
+        <div>
+            <img src="img/VMLQaMiTqC4bpwU7EdSw_appLogo.png" width="50%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <form id="login-form1" class="list" name="loginForm">
+            <div class="spacer" style="width: 300px; height: 53px;"></div>
+            <div ng-if="error" style="color:#FFFFFF;text-align:center; background-color: #33cd5f; border: 1px solid #0d8a0d;" class="errorMessage {{invalid}}">
+                <p>{{error}}</p>
+            </div>
+            <ion-list id="login-list1">
+                <label class="item item-input entryField" name="email">
+                    <span class="fieldIcon icon ion-ios-email-outline"></span>
+                    <input type="email" placeholder="Email" ng-model="user.email" required="">
+                </label>
+                <label class="item item-input entryField" name="password">
+                    <span class="fieldIcon icon ion-ios-locked-outline"></span>
+                    <input type="password" placeholder="Password" ng-model="user.password" required="">
+                </label>
+            </ion-list>
+            <button id="login-button3" type="submit" ng-disabled="loginForm.$invalid" ng-click="findUser(loginForm)" style="border-radius:50px 50px 50px 50px;" class="button button-balanced  button-block">Log in</button>
+            <a ui-sref="tabsController.gamerSignUp" id="login-button4" class="button button-positive  button-block button-clear">Or create an account</a>
+        </form>
+    </ion-content>
+</ion-view>
