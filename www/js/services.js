@@ -26,5 +26,10 @@ var obj={}
         }, 100);//registerBackButton
 }//backcallfun
 return obj;
-}]);
+}])
 
+
+.factory('Snapvar', [function(){
+  snapvar = {};
+  return snapvar;
+}]);

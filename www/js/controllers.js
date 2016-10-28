@@ -1,10 +1,10 @@
 angular.module('app.controllers', [])
   
 
-.controller('findGamersTabCtrl', ['$scope', '$stateParams', '$ionicTabsDelegate', '$firebaseArray', '$ionicPopover', '$http', 'backcallFactory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('findGamersTabCtrl', ['$scope', '$stateParams', '$ionicTabsDelegate', '$firebaseArray', '$ionicPopover', '$http', 'backcallFactory', 'Snapvar', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicTabsDelegate, $firebaseArray, $ionicPopover, $http, backcallFactory) {
+function ($scope, $stateParams, $ionicTabsDelegate, $firebaseArray, $ionicPopover, $http, backcallFactory, Snapvar) {
 
 backcallFactory.backcallfun();
 
@@ -29,7 +29,9 @@ var userRef = gref.child('userData');
 var mylong = "";
 var mylat = "";
 
-var snapval = "";
+$scope.snapvars = Snapvar;
+
+
     function updateNumber()
     {
         for(var i in snapval.friendList)
@@ -48,6 +50,7 @@ $scope.listOfFriends = [];
 
 function getList()
 {
+  $scope.gamerList = [];
 	$ionicTabsDelegate.showBar(true);
     userRef.orderByChild('ID').equalTo(usrID).once('child_added').then(function(snap){
         console.log("user's ID:",snap.key);
@@ -57,6 +60,9 @@ function getList()
         selfID = snap.key;
         selfchildID = snap.val().ID;
 
+        $scope.snapvars = snapval;
+        console.log("snapval: ", $scope.snapvars);
+
         updateNumber();
         firebase.database().ref("userData/"+ snap.key + "/friendList").once("value").then(
             function(success)
@@ -65,6 +71,7 @@ function getList()
             var ref = firebase.database().ref("userData");
             if(success.val() !== null)
             {
+                $scope.listOfFriends = [];
                for(var i in success.val())
                {
                    $scope.listOfFriends.push(success.val()[i].friendID);
@@ -120,7 +127,10 @@ function getList()
 
 }
 
-getList();
+$scope.$on('$ionicView.beforeEnter', function() 
+{
+  getList();
+});
 
 var friendResult = function(snap){
               for(var j in $scope.listOfFriends)  {
@@ -338,7 +348,7 @@ $scope.gameList = [];
         $scope.gameList = [];
         var req = {
          method: 'GET',
-         url: 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=50&offset=0&search="+$scope.search.text',
+         url: "https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=50&offset=0&search="+$scope.search.text,
          headers: {
            'X-Mashape-Key': "bgpAB6G151mshZLv8rnL5l4q8Mhwp1nSn6ujsnJmQA6cgQohzT",
            "Accept": "application/json"
@@ -443,12 +453,13 @@ $scope.activateTab = function(selected)
 
 }])
    
-.controller('chatTabCtrl', ['$scope', '$stateParams', '$http', '$ionicTabsDelegate', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('chatTabCtrl', ['$scope', '$stateParams', '$http', '$ionicTabsDelegate', 'Snapvar', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $http, $ionicTabsDelegate) {
+function ($scope, $stateParams, $http, $ionicTabsDelegate, Snapvar) {
 
-
+$scope.snapval = Snapvar;
+console.log("Lets take a look now: ", snapval);
 
 $ionicTabsDelegate.showBar(true);
 function chatter(id,name,online,avatar)
