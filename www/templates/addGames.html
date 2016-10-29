@@ -15,7 +15,8 @@
         <ion-footer-bar class="chatBar">
             <div class="family-icon-scroller">
                 <span ng-model="IconList" ng-repeat="icons in IconList track by $index" class="family-icon">
-                    <img src="{{icons.thumbnail}}" height="64px" width="64px">
+                    <img ng-if="icons.thumbnail != defaultImage" src="{{icons.thumbnail}}" height="64px" width="64px">
+                    <div ng-if="icons.thumbnail == defaultImage" style="height: 64px; width: 64px;"></div>
                     <div class="noIconText" ng-if="icons.thumbnail == defaultImage">
                         {{icons.name}}
                     </div>

@@ -31,5 +31,17 @@ return obj;
 
 .factory('Snapvar', [function(){
   snapvar = {};
+  snapvar.info = {};
+  snapvar.key = "";
+
   return snapvar;
+}])
+
+.factory('bringToProfile', [function(){
+  prof = {};
+  prof.info = {};
+  prof.key = "";
+  prof.distance = "";
+
+  return prof;
 }]);

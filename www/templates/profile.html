@@ -5,7 +5,7 @@
     </ion-nav-buttons>
 	
     <ion-nav-buttons side="right" scroll="false" class="has-header">
-        <button class="button button-icon button-light icon ion-android-people" ng-click="openPopover($event); addFriendClick()">
+        <button class="button button-icon button-light icon ion-android-people" ng-if="otherProfile == false" ng-click="openPopover($event); addFriendClick()">
 			<div ng-if="friendR > 0" class="notificationNumber" ng-model="friendR">
         {{friendR}}
 			</div>
@@ -23,12 +23,12 @@
             <p>{{userData.name}}</p>
         </div>
         <div id="profile-markdown6" style="color:#DDDDDD;font-size:12px;text-align:center;">
-            <p>Philadelphia, PA, Drexel</p>
+            <p>{{snapvars.distance}}</p>
         </div>
         <label class="item item-input">
             <textarea class="entryField" placeholder="Tell us something about yourself, edit it anytime!" style="border-top:1px solid #7e7d7c;padding: 10px 0;height: 9em" ng-model="bio.text" ng-model-options="{ debounce: 1000 }" ng-change="updateBio()"></textarea>
         </label>
-        <a ui-sref="tabsController.addGames({toProfile:true})" id="profile-button10" style="border-radius:50px 50px 50px 50px;" class="button button-light  button-block button-outline">Add Games</a>
+        <a ng-if="otherProfile == false" ui-sref="tabsController.addGames({toProfile:true})" id="profile-button10" style="border-radius:50px 50px 50px 50px;" class="button button-light  button-block button-outline">Add Games</a>
         <div>
             <div id="profile-markdown10" style="color:#F1F1F1;font-size:14px;text-align:right;">
                 <p>Touch to see Stats</p>
@@ -37,7 +37,8 @@
             <ion-footer-bar class="item-input-inset chatBar" style="height:68px;">
                 <div class="family-icon-scroller" style="margin-top:0px">
                     <a ng-click="modal.show(); holdings(icons)" ng-model="IconList" ng-repeat="icons in IconList track by $index" class="family-icon">
-                        <img src="{{icons.thumbnail}}" height="64px" width="64px">
+                        <img ng-if="icons.thumbnail != defaultImage" src="{{icons.thumbnail}}" height="64px" width="64px">
+                        <div ng-if="icons.thumbnail == defaultImage" style="height: 64px; width: 64px;margin-top:5px;"></div>
                         <div class="noIconText" ng-if="icons.thumbnail == defaultImage">
                             {{icons.name}}
                         </div>
@@ -75,9 +76,9 @@
                       <label class="item item-input">
             <textarea class="entryField" placeholder="No stats entered yet, list 'em out!" style="border-top:1px solid #7e7d7c;padding: 10px 0;height: 150px" ng-model="stat.text" >{{stat.text}}</textarea>
             </label>
-            <button ng-click="submitStats()" style="border-radius:50px 50px 50px 50px; width: 49%;" class="button button-light  button button-outline">Add Stats</button>
+            <button ng-if="otherProfile == false" ng-click="submitStats()" style="border-radius:50px 50px 50px 50px; width: 49%;" class="button button-light  button button-outline">Add Stats</button>
             
-            <button ng-click="cancelStats()" style="border-radius:50px 50px 50px 50px; width: 49%;" class="button button-light  button button-outline">Cancel</button>
+            <button ng-if="otherProfile == false" ng-click="cancelStats()" style="border-radius:50px 50px 50px 50px; width: 49%;" class="button button-light  button button-outline">Cancel</button>
             
             
                     </ion-content>

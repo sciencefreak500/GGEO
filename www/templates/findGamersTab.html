@@ -22,7 +22,7 @@
         </form>
         <ul class="family-icon-scroller" style="margin-top: 0px">
             <li class="systemContainer" ng-model="consoleList" ng-repeat="console in consoleList">
-                <button ng-click="console.click=!console.click" class="systemText" style="background-color: {{console.colorToggle()}};">{{console.name}}</button>
+                <button ng-click="console.click=!console.click; filterSystem(console)" class="systemText" style="background-color: {{console.colorToggle()}};">{{console.name}}</button>
             </li>
         </ul>
         <div class="button-bar">
@@ -34,7 +34,7 @@
             <ion-content direction="y" has-bouncing="true" style="    margin-top: 173px;" scrollbar-y="true">
                 <div ng-model="gamerTabSelected" ng-if="gamerTabSelected == true">
                     <ion-item class="item-avatar item-icon-right  entryField" ng-model="gamerList" ng-repeat="glist in gamerList">
-                        <img src="{{glist.info.avatar}}" height="40px" width="40px">
+                        <img src="{{glist.info.avatar}}" ng-click="gotoProfile(glist)" height="40px" width="40px">
                         <h2>{{glist.info.name}}</h2>
 
                         <div ng-if="glist.friend == true">

@@ -89,7 +89,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.profile', {
-    url: '/profile',
+    url: '/profile:avatarClicked',
     views: {
       'tab1': {
         templateUrl: 'templates/profile.html',
