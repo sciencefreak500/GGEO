@@ -13,10 +13,10 @@
 </ion-nav-buttons>
 	
 	
-	<ion-content padding="true" style="background: url(img/Qk1umA3RgSXjJBazdlPu_background.png) no-repeat center;background-size:cover;" scroll="false" class="has-header">
+	<ion-content padding="true" style="background: url(img/ggeo_background.png) no-repeat center;background-size:cover;" scroll="false" class="has-header">
         
         <div>
-            <img class="avatarImage" ng-model="userData" src="{{userData.image}}" width="148px" height="148px" style="display: block; margin-left: auto; margin-right: auto;">
+            <img class="avatarImage" ng-click="uploadPic()" ng-model="userData" src="{{userData.image}}" width="148px" height="148px" style="display: block; margin-left: auto; margin-right: auto;">
         </div>
         <div class="spacer" style="width: 300px; height: 14px;"></div>
         <div id="profile-markdown4" style="color:#DDDDDD;font-size:16px;text-align:center;">
@@ -49,10 +49,13 @@
 
 
             <script id="my-popover.html" type="text/ng-template">
-                <ion-popover-view style="left: 0px; width: 96%;background-color: #756969;margin-top:12px;height: 160px">
+                <ion-popover-view style="left: 0px; width: 96%;background: url(img/ggeo_background.png) no-repeat center;margin-top:12px;height: 160px">
                     
                     <ion-content style="padding: 5px;">
+                    <!-- HERE!!!!! -->
                     <ion-list ng-repeat="conf in confirmList track by $index">
+                        <img src="{{conf.avatar}}" height="40px" width="40px" style="float: left;position: relative;top: 6px;">
+                        <!-- HERE!!!!! -->
                       <ion-item style="border-bottom: 1px solid #9a9191">
                       {{conf.name}}
                 <button class="friendRequestButton button button-positive  button-icon icon ion-checkmark" ng-click="confirmFriend(conf.id)"></button>
@@ -72,8 +75,8 @@
                       <h1 class="title">{{statName}} Stats</h1>
                       
                     </ion-header-bar>
-                    <ion-content class="padding" style="background: url(https://s3.amazonaws.com/ionic-io-static/zIgXSQpSpaGKIjbsuOF8_background.png) no-repeat center;background-size: cover;">
-                      <label class="item item-input">
+                    <ion-content class="padding" style="background: url(img/ggeo_background.png) no-repeat center;background-size: cover;">
+                      <label class="item item-input" style="margin-bottom: 10px;">
             <textarea class="entryField" placeholder="No stats entered yet, list 'em out!" style="border-top:1px solid #7e7d7c;padding: 10px 0;height: 150px" ng-model="stat.text" >{{stat.text}}</textarea>
             </label>
             <button ng-if="otherProfile == false" ng-click="submitStats()" style="border-radius:50px 50px 50px 50px; width: 49%;" class="button button-light  button button-outline">Add Stats</button>
