@@ -16,7 +16,8 @@
 	<ion-content padding="true" style="background: url(img/ggeo_background.png) no-repeat center;background-size:cover;" scroll="false" class="has-header">
         
         <div>
-            <img class="avatarImage" ng-click="uploadPic()" ng-model="userData" src="{{userData.image}}" width="148px" height="148px" style="display: block; margin-left: auto; margin-right: auto;">
+            <img ng-if="otherProfile == false" class="avatarImage" ng-click="uploadPic()" ng-model="userData" src="{{userData.image}}" width="148px" height="148px" style="display: block; margin-left: auto; margin-right: auto;">
+            <img ng-if="otherProfile != false" class="avatarImage" ng-model="userData" src="{{userData.image}}" width="148px" height="148px" style="display: block; margin-left: auto; margin-right: auto;">
         </div>
         <div class="spacer" style="width: 300px; height: 14px;"></div>
         <div id="profile-markdown4" style="color:#DDDDDD;font-size:16px;text-align:center;">

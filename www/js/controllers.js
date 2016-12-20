@@ -799,10 +799,10 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('profileCtrl', ['$scope', '$stateParams', '$ionicTabsDelegate', '$ionicPopover', '$ionicModal', '$state', 'Snapvar', 'bringToProfile', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('profileCtrl', ['$scope', '$stateParams', '$ionicTabsDelegate', '$ionicPopover', '$ionicModal', '$state', 'Snapvar', 'bringToProfile', '$cordovaCamera', '$firebaseArray',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $ionicTabsDelegate, $ionicPopover, $ionicModal, $state, Snapvar, bringToProfile) {
+    function($scope, $stateParams, $ionicTabsDelegate, $ionicPopover, $ionicModal, $state, Snapvar, bringToProfile, $cordovaCamera, $firebaseArray) {
 
 
     	
@@ -831,71 +831,7 @@ angular.module('app.controllers', [])
             text: ""
         };
 
-        //insert image upload ----------------------
-
-        function b64toBlob(b64Data, contentType, sliceSize) { //blobs galore
-            contentType = contentType || '';
-            sliceSize = sliceSize || 512;
-
-            var byteCharacters = atob(b64Data);
-            var byteArrays = [];
-
-            for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-                var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-                var byteNumbers = new Array(slice.length);
-                for (var i = 0; i < slice.length; i++) {
-                    byteNumbers[i] = slice.charCodeAt(i);
-                }
-
-                var byteArray = new Uint8Array(byteNumbers);
-
-                byteArrays.push(byteArray);
-            }
-
-            var blob = new Blob(byteArrays, {
-                type: contentType
-            });
-            return blob;
-        }
-
-
-        var randID = "";
-
-        $scope.uploadPic = function() {
-            console.log("upload picture");
-
-            var options = {
-                quality: 75,
-                destinationType: 0, //URL = 0, URI = 1;
-                sourceType: 0,
-                allowEdit: true,
-                encodingType: 0,
-                targetWidth: 500,
-                targetHeight: 500,
-                saveToPhotoAlbum: false
-            };
-
-            $cordovaCamera.getPicture(options).then(function(imageData) {
-                console.log(imageData);
-                var contentType = 'image/jpeg';
-                var blob = b64toBlob(imageData, contentType);
-                console.log("a new blob, ", blob);
-                console.log("blobs URL, ", $scope.UserData.image);
-
-                randID = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
-                firebase.storage().ref().child('profilePics/' + randID + ".jpg").put(blob).
-                then(function(snapshot) {
-                    console.log('Uploaded a blob !');
-                    $scope.UserData.image = snapshot.downloadURL;
-                    $scope.$apply();
-                });
-
-
-            });
-        };
-
-        //-----------------end of insert
+  
 
         function updateNumber() {
             for (var i in $scope.snapvars.info.friendList) {
@@ -1087,6 +1023,79 @@ angular.module('app.controllers', [])
 
         //console.log($scope.IconList);
 
+                  //insert image upload ----------------------
+
+        function b64toBlob(b64Data, contentType, sliceSize) { //blobs galore
+            contentType = contentType || '';
+            sliceSize = sliceSize || 512;
+
+            var byteCharacters = atob(b64Data);
+            var byteArrays = [];
+
+            for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                var byteNumbers = new Array(slice.length);
+                for (var i = 0; i < slice.length; i++) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+
+                var byteArray = new Uint8Array(byteNumbers);
+
+                byteArrays.push(byteArray);
+            }
+
+            var blob = new Blob(byteArrays, {
+                type: contentType
+            });
+            return blob;
+        }
+
+
+        var randID = "";
+
+        $scope.uploadPic = function() {
+            console.log("upload picture");
+
+            var options = {
+                quality: 75,
+                destinationType: 0, //URL = 0, URI = 1;
+                sourceType: 0,
+                allowEdit: true,
+                encodingType: 0,
+                targetWidth: 500,
+                targetHeight: 500,
+                saveToPhotoAlbum: false
+            };
+
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+                console.log(imageData);
+                var contentType = 'image/jpeg';
+                var blob = b64toBlob(imageData, contentType);
+                console.log("a new blob, ", blob);
+                console.log("blobs URL, ", $scope.userData.image);
+
+                randID = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+                firebase.storage().ref().child('profilePics/' + randID + ".jpg").put(blob).
+                then(function(snapshot) {
+                    console.log('Uploaded a blob !');
+                    $scope.userData.image = snapshot.downloadURL;
+                    $scope.$apply();
+
+                    usr.updateProfile({
+                                photoURL: $scope.userData.image
+                            });
+                    firebase.database().ref("userData/" + $scope.snapvars.key).update({
+                    avatar: $scope.userData.image
+                });
+
+                });
+
+
+            });
+        };
+
+        //-----------------end of insert
 
     }
 ])
